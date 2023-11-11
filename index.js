@@ -1,17 +1,25 @@
-const express = require('express')
-const cors = require('cors')
+const express = require('express');
+const cors = require('cors');
 
 const app = express();
-app.use(cors())
-const  apiData = require('./MOCK_DATA.json');
-const port = process.env.PORT||3000
-app.get('/',(req,res)=>{
-    res.send("Hello im live")
+const apiData = require('./MOCK_DATA.json');
+const port = process.env.PORT || 3000;
 
-})
-app.get("/cara/product",(req , res)=>{
+const corsOptions = {
+    origin: 'http://localhost:5173',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+
+app.use(cors(corsOptions));
+
+app.get('/', (req, res) => {
+    res.send('Hello, I am live');
+});
+
+app.get('/cara/product', (req, res) => {
     return res.json(apiData);
-})
-app.listen(port,()=>{
- console.log("Im live at port",port);
-})
+});
+
+app.listen(port, () => {
+    console.log('I am live at port', port);
+});

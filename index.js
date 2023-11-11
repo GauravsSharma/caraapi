@@ -6,7 +6,10 @@ const apiData = require('./MOCK_DATA.json');
 const port = process.env.PORT || 3000;
 
 const corsOptions = {
-    origin: 'http://localhost:5173',
+    origin: (origin, callback) => {
+        // Allow any origin
+        callback(null, true);
+    },
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
